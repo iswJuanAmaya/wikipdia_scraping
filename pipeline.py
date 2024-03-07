@@ -236,7 +236,7 @@ def extract_table_by_title(driver, page_url:str, title:str, df_header: int = 0, 
                 #Encuentra el elemento en la columna de la izquierda
                 columna_izq = link_anexo.find_element(By.XPATH,'./ancestor::td/preceding-sibling::td') 
                 ActionChains(driver).move_to_element(columna_izq).pause(2).perform()
-                
+
                 ActionChains(driver).click(link_anexo).perform()
                 duerme(4,8)
 
@@ -302,10 +302,8 @@ def main():
     driver = set_driver()
 
     if mexico: 
-        # driver = iniciar_sesion(driver=driver, page_url=mex_url, user=user, password=password)
-        duerme(2)
-        driver.get(mex_url)
-        duerme(4,8)
+        driver = iniciar_sesion(driver=driver, page_url=mex_url, user=user, password=password)
+        
         #2
         extract_table_by_title(driver, page_url=mex_url, title=titulo_primer_tabla, df_header=1)
         extract_table_by_title(driver, page_url=mex_url, title=titulo_segunda_tabla, df_header=1)
